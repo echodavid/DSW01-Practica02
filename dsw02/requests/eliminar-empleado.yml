@@ -5,7 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: http://localhost:8080/empleados/E001
+  url: https://musical-happiness-69g999qwxrpphrj64-8080.app.github.dev/empleados/E001
   auth: inherit
 
 settings:

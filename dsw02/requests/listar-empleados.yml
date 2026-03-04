@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8080/empleados?page=0&size=5
+  url: https://musical-happiness-69g999qwxrpphrj64-8080.app.github.dev/empleados?page=0&size=5
   auth: inherit
 
 settings:
