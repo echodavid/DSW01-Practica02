@@ -1,50 +1,64 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+
+<!--
+Sync Impact Report
+------------------
+Version change: 0.0.0 → 1.0.0
+Modified principles: All placeholders replaced with concrete backend principles
+Added sections: Security & Deployment Constraints, Development Workflow
+Removed sections: None
+Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md, ✅ commands/*.md (none found), ✅ README.md/docs/quickstart.md (none found)
+Follow-up TODOs: TODO(RATIFICATION_DATE): Original ratification date unknown, set to TODO. All other fields resolved.
+------------------
+-->
+
+# Backend Service Constitution
+
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Technology Stack Discipline
+All backend code MUST use Java 17 and Spring Boot 3. PostgreSQL is the only supported database. Docker is required for all environments (dev, staging, prod). No other stack substitutions are permitted without explicit governance approval.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Authentication & Security (NON-NEGOTIABLE)
+All endpoints MUST be protected by HTTP Basic Authentication. Default credentials for development/staging are admin/admin123. Credentials MUST be overridden in production. No endpoints may be left unauthenticated. Sensitive config (passwords, secrets) MUST NOT be hardcoded in source except for local dev defaults.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Documentation & API Contract
+All REST endpoints MUST be documented using Swagger/OpenAPI. Documentation MUST be auto-generated and accessible at /swagger-ui or equivalent. API changes require corresponding doc updates.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Versioning & Change Management
+All code and API changes MUST follow semantic versioning (MAJOR.MINOR.PATCH). Breaking changes require a major version bump and migration plan. Docker images MUST be tagged with version and 'staging' for pre-release builds.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Testing & CI Discipline
+All features MUST include automated tests (unit and integration). CI pipelines MUST run all tests and build Docker images for every commit to main and staging branches. No code may be merged without passing tests and successful build.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Security & Deployment Constraints
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- All database credentials and secrets MUST be managed via environment variables or Docker secrets in non-dev environments.
+- Only PostgreSQL is permitted for persistent storage.
+- Docker Compose or Kubernetes manifests MUST be provided for local and staging deployments.
+- Staging deployments MUST use the same Docker image as production, differing only in environment variables.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+
+## Development Workflow
+
+- All code changes require pull requests and at least one peer review.
+- Every PR MUST include or update tests and Swagger docs as appropriate.
+- All merges to main or staging trigger CI/CD: test, build, and push Docker images.
+- No direct commits to main or staging are permitted.
+
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution supersedes all other workflow or coding practices.
+- Amendments require a PR, explicit documentation of changes, and a migration plan if breaking.
+- All PRs and reviews MUST verify compliance with these principles.
+- Constitution version MUST be incremented according to semantic versioning rules:
+	- MAJOR: Backward incompatible governance/principle removals or redefinitions.
+	- MINOR: New principle/section added or materially expanded guidance.
+	- PATCH: Clarifications, wording, typo fixes, non-semantic refinements.
+- Compliance reviews are mandatory at least once per quarter.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2026-02-25
+

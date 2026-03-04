@@ -1,0 +1,13 @@
+request:
+  name: Crear empleado
+  method: POST
+  url: http://localhost:8080/empleados
+  body:
+    mode: json
+    raw: |
+      {
+        "clave": "E001",
+        "nombre": "Juan Perez",
+        "puesto": "Desarrollador",
+        "salario": 15000
+      }

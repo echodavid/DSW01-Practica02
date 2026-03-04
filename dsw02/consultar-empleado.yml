@@ -1,0 +1,4 @@
+request:
+  name: Consultar empleado por clave
+  method: GET
+  url: http://localhost:8080/empleados/E001

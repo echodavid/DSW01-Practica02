@@ -1,0 +1,15 @@
+info:
+  name: consultar-empleado
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://localhost:8080/empleados/E001
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

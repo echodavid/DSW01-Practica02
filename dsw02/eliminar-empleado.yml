@@ -1,0 +1,4 @@
+request:
+  name: Eliminar empleado
+  method: DELETE
+  url: http://localhost:8080/empleados/E001

@@ -1,0 +1,4 @@
+request:
+  name: Listar empleados
+  method: GET
+  url: http://localhost:8080/empleados?page=0&size=5
