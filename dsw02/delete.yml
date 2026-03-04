@@ -1,11 +1,11 @@
 info:
-  name: consultar-empleado
+  name: delete
   type: http
-  seq: 3
+  seq: 5
 
 http:
   method: GET
-  url: https://musical-happiness-69g999qwxrpphrj64-8080.app.github.dev/empleados/E001
+  url: http://localhost:8080/empleados
   auth: inherit
 
 settings:

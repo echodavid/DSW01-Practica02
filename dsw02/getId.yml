@@ -1,11 +1,11 @@
 info:
-  name: listar-empleados
+  name: getId
   type: http
-  seq: 2
+  seq: 4
 
 http:
   method: GET
-  url: https://musical-happiness-69g999qwxrpphrj64-8080.app.github.dev/empleados?page=0&size=5
+  url: http://localhost:8080/empleados/E002
   auth: inherit
 
 settings:
