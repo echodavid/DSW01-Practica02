@@ -8,6 +8,6 @@ request:
       {
         "clave": "E001",
         "nombre": "Juan Perez",
-        "puesto": "Líder de proyecto",
-        "salario": 20000
+        "direccion": "Calle 456",
+        "telefono": "555-5678"
       }

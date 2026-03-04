@@ -8,6 +8,6 @@ request:
       {
         "clave": "E001",
         "nombre": "Juan Perez",
-        "puesto": "Desarrollador",
-        "salario": 15000
+        "direccion": "Calle 123",
+        "telefono": "555-1234"
       }
