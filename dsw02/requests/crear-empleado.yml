@@ -1,0 +1,27 @@
+info:
+  name: crear-empleado
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://musical-happiness-69g999qwxrpphrj64-8080.app.github.dev/empleados
+  auth:
+    type: basic
+    username: admin
+    password: admin123
+  body:
+    mode: json
+    raw: |
+      {
+        "clave": "E001",
+        "nombre": "Juan Perez",
+        "direccion": "Calle 123",
+        "telefono": "555-1234"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
