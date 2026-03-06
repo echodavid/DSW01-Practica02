@@ -16,9 +16,8 @@ config:
 
 request:
   auth:
-    type: basic
-    username: admin
-    password: admin123
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzcyNzU5MzU1LCJleHAiOjE3NzI3NjI5NTV9.zfyrlByxElOye2b3Opw7rxwB0-Lr3G4FCjp8V_K5sbI
 bundled: false
 extensions:
   bruno:

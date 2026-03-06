@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,19 +16,20 @@ public class EmpleadoService {
     @Autowired
     private EmpleadoRepository empleadoRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Empleado save(Empleado empleado) {
         validateEmpleado(empleado);
         if (empleadoRepository.existsById(empleado.getClave())) {
             throw new IllegalArgumentException("Empleado con clave ya existe");
         }
+        // Cifrar la contraseña antes de guardar
+        empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
         return empleadoRepository.save(empleado);
     }
 
-    public Page<Empleado> findAll(int page, int size) {
-        if (size <= 0) {
-            throw new IllegalArgumentException("Tamaño de página debe ser positivo");
-        }
-        Pageable pageable = PageRequest.of(page, size);
+    public Page<Empleado> findAll(Pageable pageable) {
         return empleadoRepository.findAll(pageable);
     }
 
@@ -41,6 +43,8 @@ public class EmpleadoService {
             throw new IllegalArgumentException("Empleado no encontrado");
         }
         empleado.setClave(clave);
+        // Cifrar la contraseña antes de actualizar
+        empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
         return empleadoRepository.save(empleado);
     }
 

@@ -1,20 +1,21 @@
 info:
   name: update
   type: http
-  seq: 4
+  seq: 5
 
 http:
   method: PUT
-  url: http://localhost:8080/empleados/E001
+  url: http://localhost:8080/v1/empleados/E002
   body:
-    type: json
-    data: |-
+    mode: json
+    raw: |
       {
-              "clave": "E001",
-              "nombre": "Juan Perez",
-              "direccion": "Calle 456",
-              "telefono": "555-5678"
-            }
+        "clave": "E002",
+        "nombre": "Juan Perez",
+        "direccion": "Calle 456",
+        "telefono": "555-5678",
+        "password": "password123"
+      }
   auth: inherit
 
 settings:

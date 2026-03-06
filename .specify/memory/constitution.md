@@ -20,7 +20,7 @@ Follow-up TODOs: TODO(RATIFICATION_DATE): Original ratification date unknown, se
 All backend code MUST use Java 17 and Spring Boot 3. PostgreSQL is the only supported database. Docker is required for all environments (dev, staging, prod). No other stack substitutions are permitted without explicit governance approval.
 
 ### II. Authentication & Security (NON-NEGOTIABLE)
-All endpoints MUST be protected by HTTP Basic Authentication. Default credentials for development/staging are admin/admin123. Credentials MUST be overridden in production. No endpoints may be left unauthenticated. Sensitive config (passwords, secrets) MUST NOT be hardcoded in source except for local dev defaults.
+All endpoints MUST be protected by JWT authentication using employee credentials (ID and password). Default employee credentials for development/staging are id:1, password:admin123. Credentials MUST be overridden in production. No endpoints may be left unauthenticated. Sensitive config (passwords, secrets) MUST NOT be hardcoded in source except for local dev defaults.
 
 ### III. Documentation & API Contract
 All REST endpoints MUST be documented using Swagger/OpenAPI. Documentation MUST be auto-generated and accessible at /swagger-ui or equivalent. API changes require corresponding doc updates.
@@ -60,5 +60,5 @@ All features MUST include automated tests (unit and integration). CI pipelines M
 - Compliance reviews are mandatory at least once per quarter.
 
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2026-02-25
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 4 de marzo de 2026
 

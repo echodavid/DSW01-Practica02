@@ -1,11 +1,11 @@
 info:
   name: delete
   type: http
-  seq: 5
+  seq: 6
 
 http:
-  method: GET
-  url: http://localhost:8080/empleados
+  method: DELETE
+  url: http://localhost:8080/v1/empleados/E002
   auth: inherit
 
 settings:

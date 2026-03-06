@@ -2,10 +2,11 @@ info:
   name: get
   type: http
   seq: 3
+  description: "Listar empleados con paginación"
 
 http:
   method: GET
-  url: http://localhost:8080/empleados
+  url: http://localhost:8080/v1/empleados?page=0&size=5
   auth: inherit
 
 settings:

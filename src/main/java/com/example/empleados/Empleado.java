@@ -27,14 +27,19 @@ public class Empleado {
     @Size(max = 100)
     private String telefono;
 
+    @NotBlank
+    @Size(min = 8, max = 255)
+    private String password;
+
     // Constructors
     public Empleado() {}
 
-    public Empleado(String clave, String nombre, String direccion, String telefono) {
+    public Empleado(String clave, String nombre, String direccion, String telefono, String password) {
         this.clave = clave;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.password = password;
     }
 
     // Getters and Setters
@@ -68,5 +73,13 @@ public class Empleado {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

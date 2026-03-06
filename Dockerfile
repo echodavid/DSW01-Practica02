@@ -1,5 +1,5 @@
 # Etapa 1: Build - Compilación de la aplicación
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM amazoncorretto:17-alpine AS builder
 WORKDIR /app
 
 # Copiar archivos de configuración de Maven
@@ -14,7 +14,7 @@ RUN apk add --no-cache maven && \
     apk del maven
 
 # Etapa 2: Runtime - Imagen optimizada para ejecución
-FROM eclipse-temurin:17-jre-alpine
+FROM amazoncorretto:17-alpine
 WORKDIR /app
 
 # Crear usuario no-root por seguridad

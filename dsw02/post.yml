@@ -5,17 +5,18 @@ info:
 
 http:
   method: POST
-  url: http://localhost:8080/empleados
-  auth: inherit
+  url: http://localhost:8080/v1/empleados
   body:
     mode: json
     raw: |
       {
         "clave": "E001",
         "nombre": "Juan Perez",
-        "puesto": "Desarrollador",
-        "salario": 15000
+        "direccion": "Calle 123",
+        "telefono": "555-1234",
+        "password": "password123"
       }
+  auth: inherit
 
 settings:
   encodeUrl: true

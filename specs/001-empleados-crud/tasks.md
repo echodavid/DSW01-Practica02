@@ -72,8 +72,8 @@ description: "Task list for CRUD de empleados with paginación"
 **Goal**: Eliminar empleado usando la clave
 **Independent Test Criteria**: Eliminar y verificar que no aparece en la lista
 
-- [ ] T021 [US4] Implement endpoint DELETE /empleados/{clave} in src/main/java/com/example/empleados/EmpleadoController.java
-- [ ] T022 [US4] Add unit and integration tests for eliminación in src/test/java/com/example/empleados/
+- [X] T021 [US4] Implement endpoint DELETE /empleados/{clave} in src/main/java/com/example/empleados/EmpleadoController.java
+- [X] T022 [US4] Add unit and integration tests for eliminación in src/test/java/com/example/empleados/
 
 ---
 
@@ -85,6 +85,43 @@ description: "Task list for CRUD de empleados with paginación"
 - [X] T026 [P] Update Dockerfile and docker-compose.yml for staging/production
 
 ---
+
+## Phase 7: Security & Authentication (JWT Implementation)
+
+**Purpose**: Implement JWT authentication and password hashing for all endpoints
+
+- [X] T027 [SEC] Add JWT dependencies (JJWT) to pom.xml
+- [X] T028 [SEC] Create JwtUtil class for token generation/validation in src/main/java/com/example/empleados/JwtUtil.java
+- [X] T029 [SEC] Create LoginRequest DTO in src/main/java/com/example/empleados/LoginRequest.java
+- [X] T030 [SEC] Create AuthController for login endpoint in src/main/java/com/example/empleados/AuthController.java
+- [X] T031 [SEC] Configure Spring Security with JWT in src/main/java/com/example/empleados/SecurityConfig.java
+- [X] T032 [SEC] Create JwtAuthenticationFilter in src/main/java/com/example/empleados/JwtAuthenticationFilter.java
+- [X] T033 [SEC] Add password hashing with BCrypt in EmpleadoService.java
+- [X] T034 [SEC] Update Empleado entity to include password field
+- [X] T035 [SEC] Add admin user initialization in EmpleadosApplication.java
+- [X] T036 [SEC] Update all endpoints to use /v1/ API versioning
+- [X] T037 [SEC] Protect all /v1/empleados endpoints with JWT authentication
+- [X] T038 [SEC] Update application.properties with JWT secret and security settings
+
+---
+
+## Phase 8: API Testing & Documentation
+
+**Purpose**: Create comprehensive API testing suite with Bruno
+
+- [X] T039 [TEST] Create Bruno collection structure in dsw02/ directory
+- [X] T040 [TEST] Create login.yml request file for JWT authentication
+- [X] T041 [TEST] Create post.yml for employee creation testing
+- [X] T042 [TEST] Create get.yml for employee listing with pagination
+- [X] T043 [TEST] Create getId.yml for individual employee retrieval
+- [X] T044 [TEST] Create update.yml for employee update testing
+- [X] T045 [TEST] Create delete.yml for employee deletion testing
+- [X] T046 [TEST] Create opencollection.yml for collection configuration
+- [X] T047 [TEST] Create test-empleados.sh automated testing script
+- [X] T048 [TEST] Standardize all Bruno files with proper JSON body format
+- [X] T049 [TEST] Add descriptive comments to all Bruno request files
+- [X] T050 [TEST] Create README.md documentation for Bruno collection usage
+- [X] T051 [TEST] Validate complete API testing workflow (login → CRUD operations)
 
 ## Dependencies
 

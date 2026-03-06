@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/empleados")
+@RequestMapping("/v1/empleados")
 @Tag(name = "Empleados", description = "API para gestión de empleados")
 public class EmpleadoController {
 
@@ -28,9 +30,8 @@ public class EmpleadoController {
 
     @GetMapping
     @Operation(summary = "Consultar empleados con paginación")
-    public ResponseEntity<Page<Empleado>> findAll(@RequestParam(defaultValue = "0") int page,
-                                                  @RequestParam(defaultValue = "5") int size) {
-        Page<Empleado> empleados = empleadoService.findAll(page, size);
+    public ResponseEntity<Page<Empleado>> findAll(@PageableDefault(size = 20) Pageable pageable) {
+        Page<Empleado> empleados = empleadoService.findAll(pageable);
         return ResponseEntity.ok(empleados);
     }
 

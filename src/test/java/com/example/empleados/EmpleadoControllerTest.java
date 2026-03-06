@@ -29,7 +29,7 @@ class EmpleadoControllerTest {
     void create_ValidEmpleado_ReturnsOk() throws Exception {
         Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123");
 
-        mockMvc.perform(post("/empleados")
+        mockMvc.perform(post("/v1/empleados")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(empleado)))
                 .andExpect(status().isOk())
@@ -39,7 +39,7 @@ class EmpleadoControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "admin123", roles = "ADMIN")
     void findAll_DefaultPage_ReturnsPage() throws Exception {
-        mockMvc.perform(get("/empleados"))
+        mockMvc.perform(get("/v1/empleados"))
                 .andExpect(status().isOk());
     }
 }
