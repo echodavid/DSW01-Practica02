@@ -9,7 +9,8 @@ COPY pom.xml .
 COPY src ./src
 
 # Compilar la aplicación (saltando tests para optimizar)
-RUN apk add --no-cache maven && \
+RUN apk add --no-cache maven ca-certificates && \
+    update-ca-certificates && \
     mvn clean package -Dmaven.test.skip=true && \
     apk del maven
 

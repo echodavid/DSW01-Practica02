@@ -16,10 +16,10 @@ public class EmpleadosApplication {
     @Bean
     public CommandLineRunner initData(EmpleadoRepository empleadoRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            if (empleadoRepository.count() == 0) {
-                Empleado admin = new Empleado("1", "Admin User", "Admin Address", "000-0000", passwordEncoder.encode("admin123"));
-                empleadoRepository.save(admin);
-                System.out.println("Default admin employee created with ID: 1");
+            if (empleadoRepository.findById("master@demo.com").isEmpty()) {
+                Empleado master = new Empleado("master@demo.com", "Master User", "Head Office", "000-0000", passwordEncoder.encode("master123"), null);
+                empleadoRepository.save(master);
+                System.out.println("Default master employee created with clave: master@demo.com");
             }
         };
     }

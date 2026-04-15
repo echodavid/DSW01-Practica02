@@ -12,6 +12,18 @@ import java.util.Optional;
 
 @Service
 public class EmpleadoService {
+        public java.util.List<Empleado> findByDepartamentoId(Long departamentoId) {
+            return empleadoRepository.findByDepartamento_Id(departamentoId);
+        }
+    public Empleado asignarDepartamento(String clave, Departamento departamento) {
+        Optional<Empleado> empleadoOpt = empleadoRepository.findById(clave);
+        if (!empleadoOpt.isPresent()) {
+            throw new IllegalArgumentException("Empleado no encontrado");
+        }
+        Empleado empleado = empleadoOpt.get();
+        empleado.setDepartamento(departamento);
+        return empleadoRepository.save(empleado);
+    }
 
     @Autowired
     private EmpleadoRepository empleadoRepository;

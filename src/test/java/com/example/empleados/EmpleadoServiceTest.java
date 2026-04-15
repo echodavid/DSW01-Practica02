@@ -28,7 +28,7 @@ class EmpleadoServiceTest {
 
     @Test
     void save_ValidEmpleado_ReturnsSaved() {
-        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123");
+        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123", "password", null);
         when(empleadoRepository.existsById("1")).thenReturn(false);
         when(empleadoRepository.save(empleado)).thenReturn(empleado);
 
@@ -40,7 +40,7 @@ class EmpleadoServiceTest {
 
     @Test
     void save_DuplicateClave_ThrowsException() {
-        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123");
+        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123", "password", null);
         when(empleadoRepository.existsById("1")).thenReturn(true);
 
         assertThrows(IllegalArgumentException.class, () -> empleadoService.save(empleado));
@@ -49,17 +49,18 @@ class EmpleadoServiceTest {
     @Test
     void findAll_ValidPage_ReturnsPage() {
         Pageable pageable = PageRequest.of(0, 5);
-        List<Empleado> empleados = List.of(new Empleado("1", "Juan", "Calle 1", "123"));
+        List<Empleado> empleados = List.of(new Empleado("1", "Juan", "Calle 1", "123", "password", null));
         Page<Empleado> page = new PageImpl<>(empleados, pageable, 1);
         when(empleadoRepository.findAll(pageable)).thenReturn(page);
 
-        Page<Empleado> result = empleadoService.findAll(0, 5);
+            Page<Empleado> result = empleadoService.findAll(pageable);
 
         assertEquals(page, result);
     }
 
     @Test
     void findAll_InvalidSize_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> empleadoService.findAll(0, 0));
+           Pageable pageable = PageRequest.of(0, 0);
+           assertThrows(IllegalArgumentException.class, () -> empleadoService.findAll(pageable));
     }
 }
