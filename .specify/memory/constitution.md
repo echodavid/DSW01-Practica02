@@ -19,6 +19,9 @@ Follow-up TODOs: TODO(RATIFICATION_DATE): Original ratification date unknown, se
 ### I. Technology Stack Discipline
 All backend code MUST use Java 17 and Spring Boot 3. PostgreSQL is the only supported database. Docker is required for all environments (dev, staging, prod). No other stack substitutions are permitted without explicit governance approval.
 
+### VI. Monorepo & Frontend Discipline
+The repository MUST support a monorepo structure with a frontend project (Angular) managed via Node.js and npm. Angular CLI is NOT required; frontend must be runnable with `npm start --watch`. Frontend and backend must be versioned and deployed together. Frontend code must reside in a /frontend directory. All frontend dependencies and scripts must be managed via package.json.
+
 ### II. Authentication & Security (NON-NEGOTIABLE)
 All endpoints MUST be protected by JWT authentication using employee credentials (ID and password). Default employee credentials for development/staging are id:1, password:admin123. Credentials MUST be overridden in production. No endpoints may be left unauthenticated. Sensitive config (passwords, secrets) MUST NOT be hardcoded in source except for local dev defaults.
 

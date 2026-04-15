@@ -27,7 +27,7 @@ class EmpleadoControllerTest {
     @Test
     @WithMockUser(username = "admin", password = "admin123", roles = "ADMIN")
     void create_ValidEmpleado_ReturnsOk() throws Exception {
-        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123");
+        Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123", "password", null);
 
         mockMvc.perform(post("/v1/empleados")
                 .contentType(MediaType.APPLICATION_JSON)

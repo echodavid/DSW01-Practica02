@@ -29,9 +29,10 @@ public class EmpleadoController {
     }
 
     @GetMapping
-    @Operation(summary = "Consultar empleados con paginación")
+    @Operation(summary = "Consultar empleados con paginación y departamento")
     public ResponseEntity<Page<Empleado>> findAll(@PageableDefault(size = 20) Pageable pageable) {
         Page<Empleado> empleados = empleadoService.findAll(pageable);
+        // El campo departamento ya está incluido en el modelo Empleado
         return ResponseEntity.ok(empleados);
     }
 
@@ -46,6 +47,13 @@ public class EmpleadoController {
     @Operation(summary = "Actualizar empleado")
     public ResponseEntity<Empleado> update(@PathVariable String clave, @Valid @RequestBody Empleado empleado) {
         Empleado updated = empleadoService.update(clave, empleado);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/{clave}/departamento")
+    @Operation(summary = "Asignar/quitar departamento a empleado")
+    public ResponseEntity<Empleado> asignarDepartamento(@PathVariable String clave, @RequestBody(required = false) Departamento departamento) {
+        Empleado updated = empleadoService.asignarDepartamento(clave, departamento);
         return ResponseEntity.ok(updated);
     }
 

@@ -1,3 +1,29 @@
+# Departments-Empleados Feature
+
+## Endpoints
+
+### Departamentos
+- POST /departamentos
+- GET /departamentos
+- GET /departamentos/{id}
+- GET /departamentos/{id}/empleados
+
+### Empleados
+- POST /v1/empleados (con departamento opcional)
+- PUT /v1/empleados/{clave}/departamento (asignar/quitar departamento)
+- GET /v1/empleados (muestra departamento)
+
+## Modelo de datos
+- Departamento: id, nombre
+- Empleado: clave, nombre, direccion, telefono, password, departamento (nullable)
+
+## Pruebas
+- CRUD departamentos
+- Asignación/quitar departamento a empleado
+- GET empleados y departamentos muestran relaciones
+
+## Stack
+- Java 17, Spring Boot 3, PostgreSQL, JUnit, Docker
 # 🚀 CRUD de Empleados - Spring Boot
 
 Un sistema completo de gestión de empleados construido con Spring Boot, PostgreSQL y Docker. Incluye API REST, autenticación básica, documentación Swagger y colección Bruno para testing.
@@ -92,6 +118,31 @@ mvn spring-boot:run
 3. Una vez abierto:
    ```bash
    docker-compose up --build -d
+   ```
+
+## 🖥 Frontend
+
+Este proyecto incluye un frontend independiente en `frontend/` que consume la API backend.
+
+### Ejecución del frontend
+
+```bash
+cd frontend
+npm install
+npm run start:watch
+```
+
+### Construcción de frontend
+
+```bash
+cd frontend
+npm run build
+```
+
+### Notas
+- El frontend usa JWT y redirige a login si el token expira o es inválido.
+- El backend debe estar disponible en `http://localhost:8080`.
+
    ```
 
 ## 📡 API Endpoints

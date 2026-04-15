@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmpleadoRepository extends JpaRepository<Empleado, String> {
+	java.util.List<Empleado> findByDepartamento_Id(Long departamentoId);
 }

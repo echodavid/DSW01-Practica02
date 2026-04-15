@@ -31,15 +31,21 @@ public class Empleado {
     @Size(min = 8, max = 255)
     private String password;
 
+    // Relación con Departamento
+    @jakarta.persistence.ManyToOne
+    @jakarta.persistence.JoinColumn(name = "departamento_id", nullable = true)
+    private Departamento departamento;
+
     // Constructors
     public Empleado() {}
 
-    public Empleado(String clave, String nombre, String direccion, String telefono, String password) {
+    public Empleado(String clave, String nombre, String direccion, String telefono, String password, Departamento departamento) {
         this.clave = clave;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.password = password;
+        this.departamento = departamento;
     }
 
     // Getters and Setters
@@ -57,6 +63,14 @@ public class Empleado {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     public String getDireccion() {
