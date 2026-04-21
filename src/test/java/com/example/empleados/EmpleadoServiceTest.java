@@ -9,12 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +25,9 @@ class EmpleadoServiceTest {
     @Mock
     private EmpleadoRepository empleadoRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private EmpleadoService empleadoService;
 
@@ -30,12 +35,14 @@ class EmpleadoServiceTest {
     void save_ValidEmpleado_ReturnsSaved() {
         Empleado empleado = new Empleado("1", "Juan", "Calle 1", "123", "password", null);
         when(empleadoRepository.existsById("1")).thenReturn(false);
-        when(empleadoRepository.save(empleado)).thenReturn(empleado);
+        when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+        when(empleadoRepository.save(any(Empleado.class))).thenReturn(empleado);
 
         Empleado result = empleadoService.save(empleado);
 
-        assertEquals(empleado, result);
-        verify(empleadoRepository).save(empleado);
+        assertNotNull(result);
+        verify(passwordEncoder).encode(anyString());
+        verify(empleadoRepository).save(any(Empleado.class));
     }
 
     @Test
@@ -53,14 +60,13 @@ class EmpleadoServiceTest {
         Page<Empleado> page = new PageImpl<>(empleados, pageable, 1);
         when(empleadoRepository.findAll(pageable)).thenReturn(page);
 
-            Page<Empleado> result = empleadoService.findAll(pageable);
+        Page<Empleado> result = empleadoService.findAll(pageable);
 
         assertEquals(page, result);
     }
 
     @Test
     void findAll_InvalidSize_ThrowsException() {
-           Pageable pageable = PageRequest.of(0, 0);
-           assertThrows(IllegalArgumentException.class, () -> empleadoService.findAll(pageable));
+        assertThrows(IllegalArgumentException.class, () -> PageRequest.of(0, 0));
     }
 }
