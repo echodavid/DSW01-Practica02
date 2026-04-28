@@ -29,20 +29,27 @@
 name: SonarCloud analysis
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI - Tests"]
     branches: [ "main", "dev" ]
-  pull_request:
-    branches: [ "main", "dev" ]
-  workflow_dispatch:
+    types:
+      - completed
 
 permissions:
-  pull-requests: read # allows SonarCloud to decorate PRs with analysis results
+  pull-requests: read
 
 jobs:
   Analysis:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
       - name: Analyze with SonarCloud
 
         # You can pin the exact commit or the version.
