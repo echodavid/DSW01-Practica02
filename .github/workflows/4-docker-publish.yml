@@ -1,8 +1,8 @@
-name: Docker Publish
+name: 4 - Docker Publish
 
 on:
   workflow_run:
-    workflows: ["SonarCloud analysis"]
+    workflows: ["3 - Cypress Tests"]
     branches: [ "main", "dev" ]
     types:
       - completed
