@@ -4,7 +4,7 @@ describe('Empleados CRUD', () => {
     cy.visit('/')
     cy.get('input[type="email"]').type('admin@example.com')
     cy.get('input[type="password"]').type('admin123')
-    cy.get('button').contains('Login').click()
+    cy.get('button').contains('Entrar').click()
     cy.url().should('include', '/empleados')
   })
 
@@ -14,13 +14,13 @@ describe('Empleados CRUD', () => {
   })
 
   it('should create new empleado', () => {
-    cy.get('button').contains('Crear Empleado').click()
-    cy.url().should('include', '/empleados/new')
+    cy.get('a').contains('Crear empleado').click()
+    cy.url().should('include', '#empleado/new')
     
-    cy.get('input[name="clave"]').type('EMP001')
-    cy.get('input[name="nombre"]').type('John Doe')
-    cy.get('input[name="direccion"]').type('Calle 123')
-    cy.get('input[name="telefono"]').type('555-1234')
+    cy.get('#clave').type('EMP001')
+    cy.get('#nombre').type('John Doe')
+    cy.get('#direccion').type('Calle 123')
+    cy.get('#telefono').type('555-1234')
     cy.get('button').contains('Guardar').click()
     
     cy.url().should('include', '/empleados')
@@ -29,10 +29,10 @@ describe('Empleados CRUD', () => {
 
   it('should edit empleado', () => {
     cy.get('table tbody tr').first().within(() => {
-      cy.get('button').contains('Editar').click()
+      cy.get('a').contains('Editar').click()
     })
     
-    cy.get('input[name="nombre"]').clear().type('Jane Doe')
+    cy.get('#nombre').clear().type('Jane Doe')
     cy.get('button').contains('Guardar').click()
     
     cy.contains('Jane Doe').should('exist')
@@ -43,8 +43,8 @@ describe('Empleados CRUD', () => {
       cy.get('button').contains('Eliminar').click()
     })
     
-    cy.contains('Confirmación').should('exist')
-    cy.get('button').contains('Confirmar').click()
+    // Handle window:confirm
+    cy.on('window:confirm', () => true)
   })
 
   it('should filter empleados by name', () => {

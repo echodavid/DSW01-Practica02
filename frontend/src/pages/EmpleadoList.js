@@ -6,6 +6,7 @@ export async function renderEmpleadoList(container) {
       <div class="page-header">
         <h1>Empleados</h1>
         <div>
+          <input type="text" id="searchInput" placeholder="Buscar empleado" class="search-input" />
           <a href="#empleado/new" class="btn">Crear empleado</a>
         </div>
       </div>
@@ -79,6 +80,16 @@ export async function renderEmpleadoList(container) {
         } catch (error) {
           listError.textContent = 'No se pudo eliminar el empleado.';
         }
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const rows = tableContainer.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(term) ? '' : 'none';
       });
     });
   } catch (error) {
