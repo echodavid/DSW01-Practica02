@@ -8,7 +8,7 @@ export function renderLogin(container) {
         <h1>Iniciar sesión</h1>
         <form id="loginForm">
           <label>Email</label>
-          <input type="text" id="email" placeholder="master@domain.com" required />
+          <input type="email" id="email" placeholder="master@domain.com" required />
           <label>Contraseña</label>
           <input type="password" id="password" placeholder="password" required />
           <button type="submit">Entrar</button>
